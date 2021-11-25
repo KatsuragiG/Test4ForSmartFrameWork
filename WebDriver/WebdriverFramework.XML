@@ -1,0 +1,2563 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebdriverFramework</name>
+    </assembly>
+    <members>
+        <member name="T:WebdriverFramework.Framework.API.ApiExecutor">
+            <summary>
+            class for executing web api requests
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.API.ApiExecutor.ExecuteRequest(System.String)">
+            <summary>
+            Executes webrequest by specified uri.
+            After the execution logs request and response
+            </summary>
+            <param name="uri">specified uri</param>
+            <returns>response from the response's stream</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.API.ApiExecutor.ExecuteSoapRequest(System.String,System.String,System.String)">
+            <summary>
+            execute SOAP request to API
+            </summary>
+            <param name="url">SOAP api url</param>
+            <param name="action">SOAP ACTION</param>
+            <param name="soapXmlRequest">SOAP REQUEST xml</param>
+            <returns>SOAP RESPONSE xml</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.BaseObjectComparator">
+            <summary>
+            class provides object comparison methods
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.BaseObjectComparator.AreListsEquals``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
+            <summary>
+            Checking equality of two List
+            </summary>
+            <param name="list1">first list</param>
+            <param name="list2">second list</param>
+            <typeparam name="T">object type</typeparam>
+            <returns>comparison result</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.BaseObjectComparator.AreDictionariesEquals``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.Dictionary{``0,``1})">
+            <summary>
+            Checking equality of two Dictionary
+            </summary>
+            <param name="actual"></param>
+            <param name="expected"></param>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.BaseObjectComparator.AreListsContains(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Checking that first list contains second list
+            </summary>
+            <param name="list1">first list</param>
+            <param name="list2">second list</param>
+            <returns>comparison result</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.BaseObjectComparator.IsListIsFullyIncludedIntoAnother``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
+            <summary>
+            Checking that list is fully included into another list
+            </summary>
+            <param name="smallList"></param>
+            <param name="anotherList"></param>
+            <typeparam name="T"></typeparam>
+            <returns>comparison result</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.BaseObjectComparator.FindItemsNotPresentIn2Lists``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
+            <summary>
+            Find elements that are not represented in the second file
+            </summary>
+            <param name="list1">first list</param>
+            <param name="list2">second list</param>
+            <typeparam name="T">object type</typeparam>
+            <returns>elements that are not represented in the second file</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.Checker">
+            <summary>
+            class provides methods for soft assertions
+            sometimes we need verify some condition and proceed test in case if verification was failed
+            this method allow make this
+            after as the test was ended and has failed soft assertions test still be marked as failed with messages of the reasons
+            class doesn't support running in several threads
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.Util.Checker.Messages">
+            <summary>
+            messages
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.#ctor(WebdriverFramework.Framework.WebDriver.Logger,WebdriverFramework.Framework.WebDriver.Browser)">
+            <summary>
+            checker
+            </summary>
+            <param name="logger">logger</param>
+            <param name="Browser">browser</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.CheckEquals(System.Object,System.Object,System.String)">
+            <summary>
+            verify that two object are equal
+            </summary>
+            <param name="message">message if objects don't equal</param>
+            <param name="actual">actual object</param>
+            <param name="expected">expected object</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.IsTrue(System.Object,System.String)">
+            <summary>
+            verify that object is true
+            </summary>
+            <param name="message">message if objects don't equal true</param>
+            <param name="actual">actual object</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.CheckNotEquals(System.Object,System.Object,System.String)">
+            <summary>
+             verify that two object are not equal
+            </summary>
+            <param name="message">message if objects equal</param>
+            <param name="actual">actual object</param>
+            <param name="expected">xpected object</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.CheckListsEquals``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0},System.String)">
+            <summary>
+            verify equality of two List
+            </summary>
+            <param name="message">message if objects equal</param>
+            <param name="actList">actual list</param>
+            <param name="expList">expected list</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.CheckDictionariesEquals``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.Dictionary{``0,``1},System.String)">
+            <summary>
+            verify equality of two Dictionary
+            </summary>
+            <param name="message">message if objects equal</param>
+            <param name="actDict">actual dictionary</param>
+            <param name="expDict">expected dictionary</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.CheckListsNotEquals``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0},System.String)">
+            <summary>
+            verify inequality of two lists
+            </summary>
+            <param name="message">message if objects not equal</param>
+            <param name="actList">actual list</param>
+            <param name="expList">expected list</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.IsFalse(System.Object,System.String)">
+            <summary>
+             verify that object is false
+            </summary>
+            <param name="message">message if objects equal</param>
+            <param name="actual">actual object</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.Fail(System.String)">
+            <summary>
+            Fail check
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.CheckContains(System.String,System.String,System.String)">
+            <summary>
+            verify that actual string contains another(expected)
+            </summary>
+            <param name="message">message if verification was failed</param>
+            <param name="actual">actual string</param>
+            <param name="expected">expected string</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.SetErrorInfo(System.String,System.Object,System.Object)">
+            <summary>
+            Marks test as failed with changing static HasWarn variable of the BaseTest to true
+            also make screenshot and post log message
+            </summary>
+            <param name="message">message</param>
+            <param name="actual">actual object</param>
+            <param name="expected">expected object</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.SetErrorInfoNotEquals(System.String,System.Object,System.Object)">
+            <summary>
+            Marks test as failed with changing static HasWarn variable of the BaseTest to true
+            also make screenshot and post log message
+            </summary>
+            <param name="message">message</param>
+            <param name="actual">actual object</param>
+            <param name="expected">expected object</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.Throws``1(System.String,System.Action[])">
+            <summary>
+            Throws
+            </summary>
+            <param name="message"></param>
+            <param name="asserMethods"></param>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.Checker.NotThrows``1(System.String,System.Action[])">
+            <summary>
+            Not Throws
+            </summary>
+            <param name="message"></param>
+            <param name="asserMethods"></param>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.CheckMessList">
+            <summary>
+            list of the messages. simple wrapped over List
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.CheckMessList.#ctor">
+            <summary>
+            Initilize list of the messages and set HasWarn var of the BaseTest to false
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.CheckMessList.Add(System.String)">
+            <summary>
+            add message to List and set HasWarn to true
+            </summary>
+            <param name="message">message with reason of the warn</param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.CommandLineExecutor">
+            <summary>
+            provide useful methods to executing some commands in the cmd.exe
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.CommandLineExecutor.ExecuteCommand(System.String,System.String)">
+            <summary>
+            Execute command in windows command-line
+            </summary>
+            <param name="fileName">path to executed file</param>
+            <param name="arguments">command to execute</param>
+            <returns>output of execution</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.CommandLineExecutor.ExecuteCommand(System.String,System.String,System.Boolean)">
+            <summary>
+            Execute command in windows command-line
+            method will return null if waitForExit = false
+            </summary>
+            <param name="fileName">path to executed file</param>
+            <param name="arguments">command to execute</param>
+            <param name="waitForExit">true if there is nessessary in waiting for proccess is exit</param>
+            <returns>output of execution</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.EmbeddedResourceUtility">
+            <summary>
+            Utility for work with Embedded Resources
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EmbeddedResourceUtility.GetFileContents(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            get file contents using path to the folder
+            </summary>
+            <param name="assembly">assembly</param>
+            <param name="folderPath">path to the folder that contains embedded resource</param>
+            <param name="fileName">name of file</param>
+            <returns>file contents as string</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EmbeddedResourceUtility.GetFileContentsFromNamespace(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            get file content using namespace
+            </summary>
+            <param name="assembly">assembly</param>
+            <param name="namespace">namespace</param>
+            <param name="fileName">name of file</param>
+            <returns>file contents as string</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EmbeddedResourceUtility.GetFileContents(System.String,System.String,System.String)">
+            <summary>
+            get file contents using path to the folder and assembly name
+            </summary>
+            <param name="assemblyName">name of assembly</param>
+            <param name="folderPath">path to the folder that contains embedded resource</param>
+            <param name="fileName">name of file</param>
+            <returns>file contents as string</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EmbeddedResourceUtility.HasEmbeddedResource(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            check for embedded resource
+            </summary>
+            <param name="assembly">assembly</param>
+            <param name="folderPath">path to the folder that contains embedded resource</param>
+            <param name="fileName">name of file</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EmbeddedResourceUtility.HasEmbeddedResource(System.String,System.String,System.String)">
+            <summary>
+            check for embedded resource
+            </summary>
+            <param name="assemblyName">name of assembly</param>
+            <param name="folderPath">path to the folder that contains embedded resource</param>
+            <param name="fileName">name of file</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.EnumExtensions">
+            <summary>
+            getting additional attrubutes from Enum
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.GetStringMapping(System.Enum)">
+            <summary>
+            getting string mapping from Enum
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.GetDescription(System.Enum)">
+            <summary>
+            getting Description attribute from Enum
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.GetValue(System.Enum)">
+            <summary>
+            getting value from Enum
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.GetAttribute``1(System.Enum)">
+            <summary>
+            getting attribute from Enum
+            </summary>
+            <param name="value"></param>
+            <typeparam name="TAttribute"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.EnumExtensions.StringMappingAttribute">
+            <summary>
+            string mapping attribute from Enum
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.Util.EnumExtensions.StringMappingAttribute.StringName">
+            <summary>
+            String name for String Mapping Attribute
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.Util.EnumExtensions.StringMappingAttribute.StringNames">
+            <summary>
+            String names for String Mapping Attribute
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.StringMappingAttribute.#ctor(System.String)">
+            <summary>
+            String Mapping Attribute to keep meta data on Enum lelvel
+            </summary>
+            <param name="stringName"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.StringMappingAttribute.#ctor(System.String[])">
+            <summary>
+            String Mapping Attribute to keep meta data on Enum lelvel
+            </summary>
+            <param name="stringNames"></param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.EnumExtensions.EnumUtility">
+            <summary>
+            Enum extesions Utils 
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.EnumUtility.GetValues``1">
+            <summary>
+            get values  of attribute
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.EnumUtility.GetValues``1(System.Int32)">
+            <summary>
+            get value of attribute
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="skipCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.EnumUtility.GetName``1(System.Int32)">
+            <summary>
+            get name of attribute
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.IsObjectHasSimpleType(System.Type)">
+            <summary>
+            Is Object Has Simple Type to get model comparison for object and their collection
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.EnumExtensions.DescriptionAttribute">
+            <summary>
+            Description Attribute to keep meta data on Enum level
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.Util.EnumExtensions.DescriptionAttribute.StringName">
+            <summary>
+            String name for Description Attribute
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.Util.EnumExtensions.DescriptionAttribute.StringNames">
+            <summary>
+            String names for Description Attribute
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.DescriptionAttribute.#ctor(System.String)">
+            <summary>
+            get value of Description Attribute
+            </summary>
+            <param name="stringName"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.EnumExtensions.DescriptionAttribute.#ctor(System.String[])">
+            <summary>
+            get values of Description Attribute
+            </summary>
+            <param name="stringNames"></param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.ErrorsCollector">
+            <summary>
+            Errors Collectors from execution level
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.ErrorsCollector.GetBrowserErrors(OpenQA.Selenium.IWebDriver)">
+            <summary>
+            get errors from browser console
+            </summary>
+            <param name="driver"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.FileUtils">
+            <summary>
+            usefull file utils 
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.FileUtils.IsFileExist(System.String)">
+            <summary>
+            true Is File Exist
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.FileUtils.DeleteFile(System.String)">
+            <summary>
+            delete file
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.FileUtils.CleanDirectory(System.String)">
+            <summary>
+            Clean Directory
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.JsActions">
+            <summary>
+            Class for Js actions to web elements
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsActions.GetBackgroundColorOfPseudoElementViaJs(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Get Background Color Of Pseudo Element ViaJs
+            </summary>
+            <param name="webElement"></param>
+            <param name="pseudoElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsActions.GetColorOfPseudoElementViaJs(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Get Color Of Pseudo Element Via Js
+            </summary>
+            <param name="webElement"></param>
+            <param name="pseudoElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsActions.GetPageLoadingState">
+            <summary>
+            Get Page Loading State via Js
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsActions.GetItemFromLocalStorage(System.String)">
+            <summary>
+            Get item from site Local Storage in Browser
+            </summary>
+            <param name="itemName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsActions.ScrollIntoViewViaJs(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Scroll Into View Via Js
+            </summary>
+            <param name="webElement"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsActions.ClearSessionStorage">
+            <summary>
+            Clear all items from Session storage
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsActions.ClearLocalStorage">
+            <summary>
+            Clear all items from Local storage
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.JsExecutor">
+            <summary>
+            executes javascripts
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsExecutor.ExecuteJs(System.String,System.String)">
+            <summary>
+            execute some javascript
+            </summary>
+            <param name="jScript"></param>
+            <param name="logInfo">information for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsExecutor.ReturnExecutesJsResult(System.String,System.String)">
+            <summary>
+            execute some javascript
+            </summary>
+            <param name="jScript">specified javascript</param>
+            <param name="logInfo">information for log</param>
+            <returns>result of specified script</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsExecutor.AcceptAlertsOnThePage">
+            <summary>
+            accept all alerts on the page
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.JsExecutor.FormatLogMsg(System.String)">
+            <summary>
+            format log message
+            </summary>
+            <param name="message">message</param>
+            <returns>"JS Executor: " + message</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.OpenPopUtils">
+            <summary>
+            These are small examples problems for the
+            <see cref="N:OpenPop"/>.NET POP3 library
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.FetchAllMessages(System.String,System.Int32,System.Boolean,System.String,System.String)">
+            <summary>
+            Example showing:
+             - how to fetch all messages from a POP3 server
+            </summary>
+            <param name="hostname">Hostname of the server. For example: pop3.live.com</param>
+            <param name="port">Host port to connect to. Normally: 110 for plain POP3, 995 for SSL POP3</param>
+            <param name="useSsl">Whether or not to use SSL to connect to server</param>
+            <param name="username">Username of the user on the server</param>
+            <param name="password">Password of the user on the server</param>
+            <returns>All Messages on the POP3 server</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.DeleteMessageByMessageId(OpenPop.Pop3.Pop3Client,System.String)">
+            <summary>
+            Example showing:
+             - how to delete fetch an emails headers only
+             - how to delete a message from the server
+            </summary>
+            <param name="client">A connected and authenticated Pop3Client from which to delete a message</param>
+            <param name="messageId">A message ID of a message on the POP3 server. Is located in <see cref="P:OpenPop.Mime.Header.MessageHeader.MessageId"/></param>
+            <returns><see langword="true"/> if message was deleted, <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.FindPlainTextInMessage(OpenPop.Mime.Message)">
+            <summary>
+            Example showing:
+             - how to a find plain text version in a Message
+             - how to save MessageParts to file
+            </summary>
+            <param name="message">The message to examine for plain text</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.FindHtmlInMessage(OpenPop.Mime.Message)">
+            <summary>
+            Example showing:
+             - how to find a html version in a Message
+             - how to save MessageParts to file
+            </summary>
+            <param name="message">The message to examine for html</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.FindXmlInMessage(OpenPop.Mime.Message)">
+            <summary>
+            Example showing:
+             - how to find a MessagePart with a specified MediaType
+             - how to get the body of a MessagePart as a string
+            </summary>
+            <param name="message">The message to examine for xml</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.HeadersFromAndSubject(System.String,System.Int32,System.Boolean,System.String,System.String,System.Int32)">
+            <summary>
+            Example showing:
+             - how to fetch only headers from a POP3 server
+             - how to examine some of the headers
+             - how to fetch a full message
+             - how to find a specific attachment and save it to a file
+            </summary>
+            <param name="hostname">Hostname of the server. For example: pop3.live.com</param>
+            <param name="port">Host port to connect to. Normally: 110 for plain POP3, 995 for SSL POP3</param>
+            <param name="useSsl">Whether or not to use SSL to connect to server</param>
+            <param name="username">Username of the user on the server</param>
+            <param name="password">Password of the user on the server</param>
+            <param name="messageNumber">
+            The number of the message to examine.
+            Must be in range [1, messageCount] where messageCount is the number of messages on the server.
+            </param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.DeleteMessageOnServer(System.String,System.Int32,System.Boolean,System.String,System.String,System.Int32)">
+            <summary>
+            Example showing:
+             - how to delete a specific message from a server
+            </summary>
+            <param name="hostname">Hostname of the server. For example: pop3.live.com</param>
+            <param name="port">Host port to connect to. Normally: 110 for plain POP3, 995 for SSL POP3</param>
+            <param name="useSsl">Whether or not to use SSL to connect to server</param>
+            <param name="username">Username of the user on the server</param>
+            <param name="password">Password of the user on the server</param>
+            <param name="messageNumber">
+            The number of the message to delete.
+            Must be in range [1, messageCount] where messageCount is the number of messages on the server.
+            </param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.FetchUnseenMessages(System.String,System.Int32,System.Boolean,System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Example showing:
+             - how to use UID's (unique ID's) of messages from the POP3 server
+             - how to download messages not seen before
+               (notice that the POP3 protocol cannot see if a message has been read on the server
+                before. Therefore the client need to maintain this state for itself)
+            </summary>
+            <param name="hostname">Hostname of the server. For example: pop3.live.com</param>
+            <param name="port">Host port to connect to. Normally: 110 for plain POP3, 995 for SSL POP3</param>
+            <param name="useSsl">Whether or not to use SSL to connect to server</param>
+            <param name="username">Username of the user on the server</param>
+            <param name="password">Password of the user on the server</param>
+            <param name="seenUids">
+            List of UID's of all messages seen before.
+            New message UID's will be added to the list.
+            Consider using a HashSet if you are using >= 3.5 .NET
+            </param>
+            <returns>A List of new Messages on the server</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.BypassSslCertificateCheck(System.String,System.Int32,System.Int32)">
+            <summary>
+            Example showing:
+             - how to set timeouts
+             - how to override the SSL certificate checks with your own implementation
+            </summary>
+            <param name="hostname">Hostname of the server. For example: pop3.live.com</param>
+            <param name="port">Host port to connect to. Normally: 110 for plain POP3, 995 for SSL POP3</param>
+            <param name="timeouts">Read and write timeouts used by the Pop3Client</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.SaveAndLoadFullMessage(OpenPop.Mime.Message)">
+            <summary>
+            Example showing:
+             - how to save a message to a file
+             - how to load a message from a file at a later point
+            </summary>
+            <param name="message">The message to save and load at a later point</param>
+            <returns>The Message, but loaded from the file system</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.ChangeLogging">
+            <summary>
+            Example showing:
+             - How to change logging
+             - How to implement your own logger
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.OpenPopUtils.InsertCustomEncodings(System.Text.Encoding)">
+            <summary>
+            Example showing:
+             - How to provide custom Encoding class
+             - How to use UTF8 as default Encoding
+            </summary>
+            <param name="customEncoding">Own Encoding implementation</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.ProcessUtils.GetChildren(System.Int32)">
+            <summary>
+            returns collection of children processes
+            </summary>
+            <param name="pid">pid of parent process</param>
+            <returns>collection of children processes</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.ProcessUtils.GetChildren(System.Management.ManagementObjectCollection)">
+            <summary>
+            returns collection of children processes
+            </summary>
+            <param name="moc">parent process as ManagementObject</param>
+            <returns>collection of children processes</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.ProcessUtils.KillProcesses(System.Management.ManagementObjectCollection)">
+            <summary>
+            kill collection of processes
+            </summary>
+            <param name="processes">collection of processes</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.ProcessUtils.KillProcessAndChildren(System.Int32)">
+            <summary>
+            Kills parent process and all its children processes
+            </summary>
+            <param name="pid">Parent process PID</param>.
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.QueryObject">
+            <summary>
+            For work with Database using Dapper micro-ORM
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.QueryObject.#ctor">
+            <summary>
+            constructor 
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.QueryObject.ExecuteQueryFromFileWithParameters(System.String,System.Object,System.String)">
+            <summary>
+            execute query from file that marked as Embedded Resource with parameters or without and dynamic return 
+            </summary>
+            <param name="sqlFileName">name of file (*.sql) with SQL query</param>
+            <param name="parameters">object with parameters for query</param>
+            <param name="connectionString">database connection string, by default get connection string from Configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.QueryObject.ExecuteQueryFromFileWithParameters``1(System.String,System.Object,System.String)">
+            <summary>
+            execute query from file that marked as Embedded Resource with parameters or without
+            </summary>
+            <typeparam name="TResult">type of result</typeparam>
+            <param name="sqlFileName">name of file (*.sql) with SQL query</param>
+            <param name="parameters">object with parameters for query</param>
+            <param name="connectionString">database connection string, by default get connection string from Configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.QueryObject.ExecuteQueryWithParameters(System.String,System.Object,System.String)">
+            <summary>
+            execute query with parameters or without and dynamic return 
+            </summary>
+            <param name="sqlQuery">SQL query</param>
+            <param name="parameters">object with parameters for query</param>
+            <param name="connectionString">database connection string, by default get connection string from Configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.QueryObject.ExecuteQueryWithParameters``1(System.String,System.Object,System.String)">
+            <summary>
+            execute query with parameters or without
+            </summary>
+            <typeparam name="TResult">type of result</typeparam>
+            <param name="sqlQuery">SQL query</param>
+            <param name="parameters">object with parameters for query</param>
+            <param name="connectionString">database connection string, by default get connection string from Configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.QueryObject.GetQueryString(System.String)">
+            <summary>
+            Get Query String from file
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.RegexUtil">
+            <summary>
+            usefull regular expression
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.RegexUtil.ReplacePattern(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            replace all groups with specified index in input
+            </summary>
+            <param name="input">text to replacing</param>
+            <param name="pattern">regex pattern</param>
+            <param name="group">number of group to replace</param>
+            <param name="value">value that will be placed instead</param>
+            <returns>text after replacing</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.RegexUtil.GetMatchedSet(System.String,System.String,System.Int32)">
+            <summary>
+            returns set of matched values
+            </summary>
+            <param name="input">text</param>
+            <param name="pattern">pattern to match</param>
+            <param name="group">group</param>
+            <returns>set with matching</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.Util.SQLConnection">
+            <summary>
+            For work with SQL Server database
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.SQLConnection.Instance(System.String)">
+            <summary>
+            singleton
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.SQLConnection.ExecuteReaderCmd(System.String,System.String)">
+            <summary>
+            Sends commandString to the connection with connectionString and reads a stream of rows from a SQL Server database
+            </summary>
+            <param name="connectionString">Connection string</param>
+            <param name="commandString">Command for execution</param>
+            <returns>Data read from a SQL Server database</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.SQLConnection.ExecuteScalarCmd(System.String,System.String)">
+            <summary>
+            Sends commandString to the connection with connectionString and reads the first column of the first row in the result
+            </summary>
+            <param name="connectionString">Connection string</param>
+            <param name="commandString">Command for execution</param>
+            <returns>The first column of the first row in the result</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.SQLConnection.ExecuteNonQueryCmd(System.String,System.String)">
+            <summary>
+            Sends commandString to the connection with connectionString and executes a Transact-SQL statement against the connection
+            </summary>
+            <param name="connectionString">Connection string</param>
+            <param name="commandString">Command for execution</param>
+            <returns>The number of rows affected</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.Util.SQLConnection.CloseConnectons">
+            <summary>
+            Close all connections in ConnectionsPool
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.BaseDialog">
+            <summary>
+            base class to describe the forms of dialogue
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseDialog.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="titleLocator">locator</param>
+            <param name="title">title of the dialog</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseDialog.FormatLogMsg(System.String)">
+            <summary>
+            formats the value for logging "element type - name - log splitter - the message"
+            </summary>
+            <param name="message">message for format</param>
+            <returns>a formatted value for logging "element type - name - log splitter - the message"</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.BaseEntity">
+            <summary>
+            base entity, contains instances browser and log
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BaseEntity.Log">
+            <summary>
+            Logger singletone instance
+            </summary>
+            
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BaseEntity.Browser">
+            <summary>
+            Browser singletone instance
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.FormatLogMsg(System.String)">
+            <summary>
+            Logger singletone instance
+            </summary>
+            <summary>
+            abstract method that must be overrided in the inherited classes
+            allow mark log message with specified prefix
+            for example:
+            if logging executed from the form class in the log we can see:
+            FORM ... message
+            when FORM is result taht returns overrided method
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.Debug(System.String)">
+            <summary>
+            debug in log
+            </summary>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.Info(System.String)">
+            <summary>
+            info in log
+            </summary>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.Warn(System.String)">
+            <summary>
+            warn in log
+            </summary>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.Error(System.String)">
+            <summary>
+            error in log
+            </summary>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.Fatal(System.String)">
+            <summary>
+            fatal in log
+            </summary>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.LogStep(System.Int32,System.String)">
+            <summary>
+            log step in log
+            </summary>
+            <param name="step">number of the step</param>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.LogNotImplementedStep(System.Int32,System.String)">
+            <summary>
+            log step information starts from NOT IMPLEMENTED
+            </summary>
+            <param name="step">step number</param>
+            <param name="message">step description</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.LogStep(System.Int32)">
+            <summary>
+            log step without messsage in log
+            </summary>
+            <param name="step">number of the step</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseEntity.LogStep(System.Int32,System.Int32,System.String)">
+            <summary>
+            log step range of steps with action message
+            </summary>
+            <param name="step">step</param>
+            <param name="toStep">toStep</param>
+            <param name="message">message</param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.BaseForm">
+            <summary>
+            base class for creating forms, containing the necessary methods for their use
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BaseForm.TitleLocator">
+            <summary>
+            Locator for indentification of the form
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BaseForm.Title">
+            <summary>
+            Name of the form
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BaseForm.TitleForm">
+            <summary>
+            Name of the Form/Page
+            Allow make log more readable
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseForm.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="titleLocator">locator for the page</param>
+            <param name="title">title for the page</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseForm.WaitForIsAbsent(System.Double)">
+            <summary>
+            wait until element is absent
+            </summary>
+            <param name="seconds">count of seconds to wait for the absence of an element on the page</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseForm.AssertIsOpen">
+            <summary>
+            awaits the locator form (timeoutForElementWaiting) completes the test or if the element is not found
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseForm.AssertIsClosed">
+            <summary>
+             assertion what page is closed
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseForm.WaitAndAssertIsDisappeared(System.Int32)">
+            <summary>
+            Wait And Assert until element is absent
+            </summary>
+            <param name="seconds">count of seconds to wait for the Disappearing of an element on the page</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseForm.FormatLogMsg(System.String)">
+            <summary>
+            formats the value for logging "name page - log splitter - the message"
+            </summary>
+            <param name="message">message for format</param>
+            <returns>a formatted value for logging "element type - name - log splitter - the message"</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.BaseTest">
+            <summary>
+            Base test class. Does browser initialization and closes it after test is finished.
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BaseTest.HasWarn">
+            <summary>
+            allow marks test as failure or success
+            if HasWarn has true value test will be failed in the end
+            this variable used in the Checker class for make soft assertions
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BaseTest.Checker">
+            <summary>
+            Checker to make soft assert
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.BaseTest.TestContext">
+            <summary>
+            Context of the current test execution
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseTest.ToString">
+            <summary>
+            override method toString()
+            </summary>
+            <returns>name</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseTest.InitBeforeTest">
+            <summary>
+            Initialization before test case.
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseTest.RunTest">
+            <summary>
+            should be implemented in childs
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseTest.ProcessingErrors">
+            <summary>
+            получает список некритичных сообщений и выводит в лог
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseTest.CleanAfterTest">
+            <summary>
+            closing browser
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseTest.FormatLogMsg(System.String)">
+            <summary>
+            formats the value for logging "name test - log splitter - the message"
+            </summary>
+            <param name="message">message for format</param>
+            <returns>a formatted value for logging "element type - name - log splitter - the message"</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BaseTest.ChangeZoomAndLogStep(System.Int32)">
+            <summary>
+            zoom body for percent
+            </summary>
+            <param name="percent">percent for zoom</param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Browser">
+            <summary>
+            class for setting parameters of the browser
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Browser._counter">
+            <summary>
+            number of screenshots
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Browser.CurrentBrowser">
+            <summary>
+            stores value of the current Browser type
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Browser.ImplWait">
+            <summary>
+            stores value of the implicity wait
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Browser.TimeoutForElementWaiting">
+            <summary>
+            stores value of the time when autotest will be wait until element exists
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Browser.LoginPage">
+            <summary>
+            stores value to the base application url
+            very often it is login page
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Browser.ActiveDir">
+            <summary>
+            directory to store any artifacts of tests
+            for example: screenshots of the steps
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Browser.Instance">
+            <summary>
+            singleton
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.#ctor">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.InitDriver">
+            <summary>
+            Init
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.InitProperties">
+            <summary>
+            read params
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.GetElementTimeoutInSeconds(System.Int32)">
+            <summary>
+            returns default timeout for wait elements
+            migth be used for other waitings
+            </summary>
+            <returns>timeout</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.NavigateToStartPage">
+            <summary>
+            start page navigation
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WaitForPageToLoad">
+            <summary>
+            wait for page to load
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WaitForAlert">
+            <summary>
+            waits for alert
+            <returns>alert</returns>
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WaitAlertAndAccept">
+            <summary>
+            wait until alert is present and the click Accept button
+            <returns>text from alert</returns>
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WaitForSpinnerAppears">
+            <summary>
+            Wait before spenner is not shown
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WaitForUrlChange(System.String)">
+            <summary>
+            waits until page url will be changed
+            </summary>
+            <param name="oldUrl">old value of page url</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WaitForUrlContains(System.String)">
+            <summary>
+            waits until url will contains some value
+            </summary>
+            <param name="value">part of url</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.Refresh">
+            <summary>
+            refreshes page
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.GetDriver">
+            <summary>
+            get driver
+            </summary>
+            <returns>current driver</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.SwitchFrameByIndex(System.Int32)">
+            <summary>
+            switch frame by index
+            </summary>
+            <param name="index">index</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.SwitchToLastWindow">
+            <summary>
+            switch to last window
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.SwitchToFirstWindow">
+            <summary>
+            switch to first window
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.Quit">
+            <summary>
+            quit
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.GetScreenshot">
+            <summary>
+            get screenshot
+            </summary>
+            <returns>screenshot</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WindowMaximise">
+            <summary>
+            fullscreen
+            now this works with the standart function for all possible browsers: IE, FireFox and Chrome
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.Sleep(System.Int32)">
+            <summary>
+            sleep process
+            </summary>
+            <param name="mSeconds">the number of seconds for sleep</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.Sleep(System.Double)">
+            <summary>
+            sleep process
+            </summary>
+            <param name="mSeconds">the number of milliseconds for sleep</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.Sleep">
+            <summary>
+            sleep process
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.SaveScreenShot(System.String)">
+            <summary>
+            save screenshot
+            </summary>
+            <param name="fileName">name screenshot</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.SaveAndGetPathToScreenShot(System.String)">
+            <summary>
+            save screenshot
+            </summary>
+            <param name="fileName">name screenshot</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.NavigateTo(System.String)">
+            <summary>
+            Navigate to page with URL "url"
+            </summary>
+            <param name="url">Page URL</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WaitForNewWindow(System.Int32)">
+            <summary>
+            waiting, while number of open windows will be more than previous
+            </summary>
+            <param name="prevWndCount">number of windows before some action</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.WindowCount">
+            <summary>
+            Get number of open windows
+            </summary>
+            <returns>number of open windows</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.SwitchWindow(System.Int32)">
+            <summary>
+            Switch to the window with index
+            </summary>
+            <param name="index">index of the window</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Browser.GetNewtworks">
+            <summary>
+            get scripts from Network browser tub
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.BrowserFactory">
+            <summary>
+            Factory to initialize browser instance
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType">
+            <summary>
+            list of available browsers for execution
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType.Chrome">
+            <summary>
+            Chrome browser (version depends on machine when tests will be runned)
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType.Firefox">
+            <summary>
+            Firefox browser (version depends on machine when tests will be runned)
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType.Iexplore">
+            <summary>
+            IEexplore browser (version depends on machine when tests will be runned)
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType.BrowserStack">
+            <summary>
+            BrowserStack configuration. Should be defined in the app.config.
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType.ChromeMobileEmulator">
+            <summary>
+            Chrome Mobile Emulator in chromedriver
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType.Edge">
+            <summary>
+            Edge browser (version depends on machine when tests will be runned)
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BrowserFactory.GetDriver(WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType)">
+            <summary>
+            creates a driver of the browser
+            if found creates a remote system variable 'server'
+            </summary>
+            <param name="type">type of browser</param>
+            <returns>RemoteWebDriver</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.BrowserFactory.SetUp(System.String,WebdriverFramework.Framework.WebDriver.BrowserFactory.BrowserType@)">
+            <summary>
+            parsing string
+            </summary>
+            <param name="type">type</param>
+            <param name="browserType">type of the browser</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.BrowserFactory.ChromeOptionsWithPrefs">
+            <summary>
+            chrome options
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.BrowserFactory.ChromeOptionsWithPrefs.prefs">
+            <summary>
+            stores list of the preferences
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.CommonFunctions">
+            <summary>
+            other methods
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.CommonFunctions.GetTimeStamp">
+            <summary>
+            get time stamp
+            </summary>
+            <returns>date time</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Configuration">
+            <summary>
+            class with settings for the solution
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.RemoteWebDriverWait">
+            <summary>
+            get from app.config Remote WebDriver default waiting
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.LocalWebDriverWait">
+            <summary>
+            get from app.config Remote WebDriver default waiting
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.Login">
+            <summary>
+            get from app.config field Login
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.Password">
+            <summary>
+            get from app.config field Password
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.LoginUrl">
+            <summary>
+            get from app.config field LoginURL
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.AdminUrl">
+            <summary>
+            get from app.config field LoginURL
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.SeleniumGridUrl">
+            <summary>
+            get from app.config field Selenium Grid URL
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.UseSeleniumGrid">
+            <summary>
+            get from app.config field UseSeleniumGrid
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.UseLocalFileDetector">
+            <summary>
+            get from app.config field UseLocalFileDetector
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.HowManyTimesTryToInstanceBrowser">
+            <summary>
+            get from app.config field HowManyTimesTryToInstanceBrowser
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.ElementTimeout">
+            <summary>
+            get from app.config field element_timeout
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.EmailWaitTimeout">
+            <summary>
+            get from app.config field email_wait_timeout
+            defines timeout for waiting emails
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.PageTimeout">
+            <summary>
+            get from app.config field page_timeout
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.QueryTimeout">
+            <summary>
+            get from app.config field page_timeout
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.LoginRequestTimeOut">
+            <summary>
+            get from app.config field login_request_timeout_ms to validate login process in DB
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.Delay">
+            <summary>
+            get from app.config field Delay
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.UseSystemBrowserParameter">
+            <summary>
+            get from app.config field UseSystemBrowserParameter
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.Browser">
+            <summary>
+            get from app.config field Browser
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.MobileTesting">
+            <summary>
+             get boolean value for the field MobileTesting from environment or from app.config
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.FileDownloadingTimeoutMs">
+            <summary>
+            get from app.config field file_downloading_timeout_ms
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Configuration.Database">
+            <summary>
+            described preferences for database
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.Database.ProviderInvariantName">
+            <summary>
+            get from app.config field ProviderInvariantName
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.Database.ConnectionString">
+            <summary>
+            get from app.config field ConnectionString
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.Database.ConnectionString2">
+            <summary>
+            get alternative string from app.config field ConnectionString
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack">
+            <summary>
+            described preferences of the launching with browserstack
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Hub">
+            <summary>
+            browserstack hub
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.User">
+            <summary>
+            user to connect to browserstack environment
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Key">
+            <summary>
+            key to connect to browserstack environment
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Browser">
+            <summary>
+            browser name according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.BrowserVersion">
+            <summary>
+            browser version according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.OS">
+            <summary>
+            OS name according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.OSVersion">
+            <summary>
+            OS version according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Resolution">
+            <summary>
+            screen resolution according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Local">
+            <summary>
+            value run or not (true/false) local browserstack 
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Debug">
+            <summary>
+            value run or not (true/false) debug browserstack 
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.BrowserName">
+            <summary>
+            browserName (for mobile testing) according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Platform">
+            <summary>
+            platform name (for mobile testing) according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Device">
+            <summary>
+            device name (for mobile testing) according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.DeviceOrientation">
+            <summary>
+            device orientation (for mobile testing) according to the browserstack specification
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.BrowserStack.Emulator">
+            <summary>
+            emulator usage (for mobile testing) according to the browserstack specification
+            value must be true/false
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Configuration.ChromeMobileEmulator">
+            <summary>
+            described preferences of the launching with chrome mobile emulator
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.ChromeMobileEmulator.DeviceName">
+            <summary>
+            device name
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Configuration.GetValue(System.String)">
+            <summary>
+            get from app.config field and converts into string
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Configuration.GetEnviromentVar(System.String,System.String)">
+            <summary>
+            returns value of environment variable
+            </summary>
+            <param name="var">variable's name</param>
+            <param name="defaultValue">default value, will be returned if env var was not setted</param>
+            <returns>value of environment variable</returns>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Configuration.DownloadDirectory">
+            <summary>
+            get DownloadDirectory browser depended
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.BaseElement">
+            <summary>
+            Abstract class for any elements in the application
+            All classes that described elements such as Button, TextBox and etc.
+            should inherit of this class
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.Name">
+            <summary>
+            Name of elements (usually used for logging)
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.Locator">
+            <summary>
+            locator to element
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.Element">
+            <summary>
+            IWebElement instance
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.TimeoutToDelayCharMs">
+            <summary>
+            Timeout ToDelay Char Typing in Ms
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of the element</param>
+            <param name="name">name of the element</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetElement">
+            <summary>
+            return IWeb-Element
+            </summary>
+            <returns>IWeb-Element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetDisplayedElements(OpenQA.Selenium.By)">
+            <summary>
+            returns elements, currently displayed on page
+            </summary>
+            <param name="locator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetLocator">
+            <summary>
+            get locator By
+            </summary>
+            <returns>locator By of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetName">
+            <summary>
+            method gets the name of element
+            </summary>
+            <returns>name of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.FormatLogMsg(System.String)">
+            <summary>
+            formats the value for logging "element type - name - log splitter - the message"
+            </summary>
+            <param name="message">message for format</param>
+            <returns>a formatted value for logging "element type - name - log splitter - the message"</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.AssertIsPresent">
+            <summary>
+            assertion of the presence of the element on the page
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsAbsent(System.Int32)">
+            <summary>
+             wait until element is absent
+            </summary>
+            <param name="seconds">count of seconds to wait for the absence of an element on the page</param>
+            <returns>true if absent</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.AssertIsAbsent">
+            <summary>
+             assertion of the absence of the element on the page
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.AssertIsDisable">
+            <summary>
+             assertion of the disable element on the page
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsEnabled">
+            <summary>
+            check that the element is enabled (performed by a class member)
+            </summary>
+            <returns>true if element is enabled</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForIsEnabled">
+            <summary>
+            workaround for AJAX 
+            </summary>
+            <returns>element if element is enabled else null</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForIsDisabled">
+            <summary>
+            workaround for AJAX
+            </summary>
+            <returns>element if element is enabled else null</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForElementIsPresent(System.Int32)">
+            <summary>
+            wait until element is presence
+            </summary>
+            <returns>element if element is displayed else null</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForElementExists">
+            <summary>
+            wait until element exists
+            initialize Element var if element exist
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForIsElementPresentReloadingPage(System.String)">
+            <summary>
+             wait until element is presence updating each time the page
+            </summary>
+            <param name="url">url for update</param>
+            <returns>element if element is displayed else null</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForIsAbsent">
+            <summary>
+            wait until element is absent
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForElementIsPresentAndGetIt">
+            <summary>
+            wait until element present and get it
+            initialize Element var if element present
+            </summary>
+            <returns>IWeb-Element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.WaitForElementExistsAndGetIt">
+            <summary>
+            wait until element exists and get it
+            initialize Element var if element exist
+            </summary>
+            <returns>IWeb-Element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsPresent">
+            <summary>
+            checks the presence of an element on the page
+            </summary>
+            <returns>true if element is displayed</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsExists">
+            <summary>
+            check if element exists on the page
+            </summary>
+            <returns>true if exists</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsActive">
+            <summary>
+            check if element active on the page by finding 'active' in class attribute
+            </summary>
+            <returns>true if active</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetDataIndex">
+            <summary>
+            get value of data-index attribute of the element
+            </summary>
+            <returns>data-index attribute value</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetDisabledAttribute">
+            <summary>
+            gets attribute disabled
+            </summary>
+            <returns>attribute disabled of the element. Empty string if attribute is absent</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetDisabledAttributeInvisible">
+            <summary>
+            gets attribute disabled
+            </summary>
+            <returns>attribute disabled of the element. Empty string if attribute is absent</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetCssValueCursor">
+            <summary>
+            gets Css Value Cursor
+            </summary>
+            <returns>Cursor css value for enabling action. Empty string if attribute is absent</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsChecked">
+            <summary>
+            check if element active on the page by finding 'checked' in class attribute
+            </summary>
+            <returns>true if checked</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsSelected">
+            <summary>
+            check if element active on the page by finding 'selected' in class attribute
+            </summary>
+            <returns>true if selected</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsPresent(System.Int32)">
+            <summary>
+            check for is element present on the page
+            </summary>
+            <param name="sec">count of seconds to wait for the absence of an element on the page</param>
+            <returns>true if element is present</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsExists(System.Int32)">
+            <summary>
+            check for is element exists on the page
+            </summary>
+            <param name="sec">wait in seconds until element is not exists</param>
+            <returns>true if exists</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsDisabled">
+            <summary>
+            check for is element disabled on the page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.Click">
+            <summary>
+            click on the element
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickAndWaitForLoading">
+             <summary>
+            click on an item and wait for the page is loaded
+             </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickExt">
+            <summary>
+            extended click through Enter
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetElementsCount(OpenQA.Selenium.By)">
+            <summary>
+            returns count of elements using findElements method of selenium
+            </summary>
+            <param name="locator">locator to element</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickExtAndWait">
+            <summary>
+            click on an item ext click through Enter and wait for the page is loaded.
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickViaAction">
+            <summary>
+            click via Action.
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickViaJs">
+            <summary>
+            click via JS.
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.FocusViaJs">
+            <summary>
+            click via JS.
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ScrollIntoView">
+            <summary>
+            scroll element into view
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ScrollHorizontalToEndFromKeyboard">
+            <summary>
+            scroll element to right by Right Arrow Key
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickInvisible">
+            <summary>
+            click via JS.
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickViaJsAndWait">
+            <summary>
+            click on an item js click and wait for the page is loaded.
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickWithMouseOver">
+            <summary>
+            move the cursor to the element and click him
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickAndWaitForNewWindow">
+            <summary>
+            click and look forward to the emergence of a new window
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickAndWaitForWindowClose">
+            <summary>
+            click and look forward to closing the current window
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.DoubleClick">
+            <summary>
+            double click
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SendKeys(System.String)">
+            <summary>
+            send keys
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SendKeysWithoutPresent(System.String)">
+            <summary>
+            send keys without element waiting
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SetAttribute(System.String,System.String)">
+            <summary>
+            sets the value of the title attribute
+            </summary>
+            <param name="attName">attribute name</param>
+            <param name="attValue">attribute value</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetClass">
+            <summary>
+            gets the value of the class attribute
+            </summary>
+            <returns>the class value of the title attribute of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetAriaInvalidAttribute">
+            <summary>
+            gets the value of the class attribute
+            </summary>
+            <returns>the class value of the title attribute of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetAttribute(System.String)">
+            <summary>
+            gets the value of the title attribute
+            </summary>
+            <param name="attr">attribute of the element</param>
+            <returns>the value of the title attribute of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetCssValue(System.String)">
+            <summary>
+            gets the CSS value of the property
+            </summary>
+            <param name="propertyName">property name of the element</param>
+            <returns>the CSS value of the property of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetAttributeInvisible(System.String)">
+            <summary>
+            get attribute value from element that is not displayed
+            </summary>
+            <param name="attr">attribute</param>
+            <returns>value of attribute</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetValue">
+            <summary>
+            gets the value
+            </summary>
+            <returns>the value of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetValueInvisible">
+            <summary>
+            gets the value
+            </summary>
+            <returns>the value of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetText">
+            <summary>
+            get the text of the element
+            </summary>
+            <returns>the text of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetTextWithoutWaiting">
+            <summary>
+            get the text of the element Without Waiting
+            </summary>
+            <returns>the text of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetTextContent">
+            <summary>
+            get the textContent of the element
+            </summary>
+            <returns>the textContent of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetBorderColorByCssValue">
+            <summary>
+            get the border color of the element by CSS value
+            </summary>
+            <returns>the border color of the element by CSS value</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetBorderTopColorByCssValue">
+            <summary>
+            get the border Top color of the element by CSS value
+            </summary>
+            <returns>the border color of the element by CSS value</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetTitleAttrubute">
+            <summary>
+            get the title of the element
+            </summary>
+            <returns>the textContent of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetStyleAttrubute">
+            <summary>
+            get the style of the element
+            </summary>
+            <returns>the textContent of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetSortValueAttrubute">
+            <summary>
+            get the sortvalue of the element
+            </summary>
+            <returns>the textContent of the element</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetColorByCssValue">
+            <summary>
+            get the color of the element by CSS value
+            </summary>
+            <returns>the color of the element by CSS value</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetPaddingLeftByCssValue">
+            <summary>
+            get the padding-left value of the element by CSS value
+            </summary>
+            <returns>the padding-left value of the element by CSS value</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.FocusWithKeys">
+            <summary>
+            focus on the element and send key ""
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.Focus">
+            <summary>
+            focuses the element
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.FocusWithMouseShift(System.Int32,System.Int32)">
+            <summary>
+            focuses the element with mouse shift
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.MouseOver">
+            <summary>
+            move the cursor to the element 
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ScrollThePage(System.Int32,System.Int32)">
+            <summary>
+            scroll the page
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ScrollTo(System.Int32,System.Int32)">
+            <summary>
+            scroll the element to the position
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.GetElementType">
+            <summary>
+            abstract method for get the type of the element 
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClickRight">
+            <summary>
+            right click
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.IsCollapsed">
+            <summary>
+            verify that the drop-down element is minimized (performed by a class member)
+            </summary>
+            <returns>true if collapsed</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SetValueViaJs(System.String,System.String)">
+            <summary>
+            set value via javascript <b>document.getElementById('{0}').value='{1}' </b>
+            </summary>
+            <param name="elementId">Element Id</param>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SetInnerHtml(System.String)">
+            <summary>
+            set innerHtml via javascript <b>arguments[0].innerHTML='{0}' </b>
+            </summary>
+            <param name="value">value</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SetValueViaJs(System.String)">
+            <summary>
+            set value via javascript <b>arguments[0].value='{0}' </b>
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ExpectedConditions">
+            <summary>
+            enum to set expected condition for explicit wait
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ExpectedConditions.ElementExists">
+            <summary>
+            condition when element exists in the html source code
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ExpectedConditions.ElementIsVisible">
+            <summary>
+            condition when element exists in the html source code and visible now
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ExplicitWait(WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ExpectedConditions,System.Int32)">
+            <summary>
+            set explicit wait
+            </summary>
+            <param name="condition">Expected condition for explicit wait</param>
+            <param name="seconds">Explicit wait timeout</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SelectAllTextByCtrlA">
+            <summary>
+            select all text by Ctrl+A
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClearFieldBySelectingAndDeleting">
+            <summary>
+            clear field by selecting all chars and pressing Delete
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClearFieldByCharsDeleting(System.Int32)">
+            <summary>
+            clear field by pressing Backspace
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ClearFieldBySelectingAndPressingDelete(System.String)">
+            <summary>
+            clear field by selecting all chars and pressing Delete and pressing Backspace
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.SetTextWithDelayInCharTyping(System.String)">
+            <summary>
+            clear field and set text with delay
+            </summary>
+            <param name="text">text for set</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.BaseElement.ConvertTextToListOfTypedString(System.String)">
+            <summary>
+            Convert Text To List Of Typed String
+            </summary>
+            <param name="text">text for set</param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.Button">
+            <summary>
+            class describes the interface element "button"
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Button.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of the button</param>
+            <param name="name">name of the button</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Button.GetElementType">
+            <summary>
+            gets the type of the button 
+            </summary>
+            <returns>type of the button</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.CheckBox">
+            <summary>
+            class describes the interface element "CheckBox"
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.CheckBox.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of the checkBox</param>
+            <param name="name">name of the checkBox</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.CheckBox.GetElementType">
+            <summary>
+            gets the type of the checkBox 
+            </summary>
+            <returns>type of the checkBox</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.CheckBox.Check(System.Boolean)">
+            <summary>
+            set value​​(to check whether it is necessary to change the current)
+            </summary>
+            <param name="state">value(true or false)</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.CheckBox.Uncheck">
+            <summary>
+            uncheck the checkBox
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.CheckBox.Check">
+            <summary>
+            check the checkBox
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.CheckBox.CheckJs(System.Boolean)">
+            <summary>
+            set checkbox to state
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.FieldCustom">
+            <summary>
+            class describes the interface custom field
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.FieldCustom.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of custom field</param>
+            <param name="name">name of custom field</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.FieldCustom.GetElementType">
+            <summary>
+            gets the type of custom field 
+            </summary>
+            <returns>type of custom field</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.Label">
+            <summary>
+            class describes the interface element "label"
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Label.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of the label</param>
+            <param name="name">name of the label</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Label.GetElementType">
+            <summary>
+            gets the type of the label 
+            </summary>
+            <returns>type of the label</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Label.GetAllLabels(System.String,System.String)">
+            <summary>
+            gets all labels
+            </summary>
+            <param name="locator">locator By of labels</param>
+            <param name="name">name of labels</param>
+            <returns>all labels on the page</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Label.GetAllLabels(System.String)">
+            <summary>
+            gets all labels
+            </summary>
+            <param name="locator">locator By of labels</param>
+            <returns>all labels on the page</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Label.GetAllLabelsText">
+            <summary>
+            gets all label's text as collection
+            </summary>
+            <returns>collection of strings</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Label.GetHref">
+            <summary>
+            gets attribute href
+            </summary>
+            <returns>attribute href of the label</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Label.GetChecked">
+            <summary>
+            gets attribute checked
+            </summary>
+            <returns>attribute checked of the label</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.Link">
+            <summary>
+            class describes the interface element "link"
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Link.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of the link</param>
+            <param name="name">name of the link</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Link.GetElementType">
+            <summary>
+            gets the type of the link 
+            </summary>
+            <returns>type of the link</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.Link.GetHref">
+            <summary>
+            gets attribute href
+            </summary>
+            <returns>attribute href of the link</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.MenuItem">
+            <summary>
+            class describes the interface element "menu item"
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.MenuItem.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of menu item</param>
+            <param name="name">name of menu item</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.MenuItem.GetElementType">
+            <summary>
+            gets the type of menu item 
+            </summary>
+            <returns>type of menu item</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.MenuItem.GetName(System.String[])">
+            <summary>
+            The creation of the full name of the menu item (used for logging)
+            </summary>
+            <param name="names">An array of names of individual items of a complex menu</param>
+            <returns>name</returns>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.RadioButton">
+            <summary>
+            class describes the interface element "radio button"
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.RadioButton.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of the radio button</param>
+            <param name="name">name of the radio button</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.RadioButton.GetElementType">
+            <summary>
+            gets the type of the radio button 
+            </summary>
+            <returns>type of the radio button</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.RadioButton.Check(System.Boolean)">
+            <summary>
+            set value (with checking)
+            </summary>
+            <param name="state">state(true or false)</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.RadioButton.Check">
+            <summary>
+            check radio button is true
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Elements.TextBox">
+            <summary>
+            class describes the interface element "textbox"
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.#ctor(OpenQA.Selenium.By,System.String)">
+            <summary>
+            constructor with two parameters
+            </summary>
+            <param name="locator">locator By of the textbox</param>
+            <param name="name">name of the textbox</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.GetElementType">
+            <summary>
+            gets the type of the textbox 
+            </summary>
+            <returns>type of the textbox</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.Type(System.String)">
+            <summary>
+            set text without clear
+            </summary>
+            <param name="text">text for set</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.SetText(System.String)">
+            <summary>
+            clear field and set text
+            </summary>
+            <param name="text">text for set</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.IsReadOnly">
+            <summary>
+            check that the element is readonly (performed by a class member)
+            </summary>
+            <returns>true if element is enabled</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.SetTextWithAction(System.String)">
+            <summary>
+            clear field and set text
+            </summary>
+            <param name="text">text for set</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.ClearField">
+            <summary>
+            clear field and set text
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.TypeInvisible(System.String)">
+            <summary>
+            type text into textbox without wait before element is dispayed
+            </summary>
+            <param name="text">typed text</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.Submit">
+            <summary>
+            submit form
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Elements.TextBox.GetValueByJs">
+            <summary>
+            get value for numeric stepper
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.Logger">
+            <summary>
+            class for log
+            </summary>
+        </member>
+        <member name="F:WebdriverFramework.Framework.WebDriver.Logger.LogDelimiter">
+            <summary>
+            delimeter betweeen inline log messages
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.#ctor">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Logger.Instance">
+            <summary>
+            instance log
+            </summary>
+        </member>
+        <member name="P:WebdriverFramework.Framework.WebDriver.Logger.LastExecutedStepMessage">
+            <summary>
+            Store last executed step description
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.Fail(System.String)">
+            <summary>
+            fail in log
+            </summary>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.Info(System.String)">
+            <summary>
+            info in log
+            </summary>
+            <param name="message">message for log</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.InfoWithoutTimeStamp(System.String)">
+            <summary>
+            Info in log Without TimeStamp
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.PreconditionStart(System.String)">
+            <summary>
+            precondition for start
+            </summary>
+            <param name="title">name of the step</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.PreconditionFailed(System.String)">
+            <summary>
+            precondition for failed
+            </summary>
+            <param name="title">name of the step</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.PreconditionPassed(System.String)">
+            <summary>
+            precondition for passed
+            </summary>
+            <param name="title">name of the step</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.ReportScreenshot(System.String)">
+            <summary>
+            Report in log abount screenshot
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.TestName(System.String)">
+            <summary>
+            name of the test
+            </summary>
+            <param name="title">name of the test</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.TestName(System.String,System.Nullable{System.Int32})">
+            <summary>
+            name of the test with row number
+            </summary>
+            <param name="title"></param>
+            <param name="rowNumber"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.LogTreadId">
+            <summary>
+            Log about managedThreadId
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.LogStep(System.Int32,System.Int32)">
+            <summary>
+            simple log range of steps
+            </summary>
+            <param name="step">step</param>
+            <param name="toStep">toStep</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.LogStep(System.Int32)">
+            <summary>
+            simple log step
+            </summary>
+            <param name="step"></param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.LogStep(System.Int32,System.String)">
+            <summary>
+            log step with action message from MTM
+            </summary>
+            <param name="step">step</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.LogStep(System.Int32,System.Int32,System.String)">
+            <summary>
+            log step with action message from MTM
+            </summary>
+            <param name="step">step</param>
+            <param name="toStep">toStep</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.Passed(System.String)">
+            <summary>
+            log if test is passed
+            </summary>
+            <param name="title">name test</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.Debug(System.String)">
+            <summary>
+            debug
+            </summary>
+            <param name="format">format</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.Warn(System.String)">
+            <summary>
+            warn
+            </summary>
+            <param name="formatLogMsg">format for message</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.Error(System.String)">
+            <summary>
+            error
+            </summary>
+            <param name="formatLogMsg">format for message</param>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.GetTcId(System.String)">
+            <summary>
+            get TC id
+            </summary>
+            <param name="intput">intput</param>
+            <returns>intput</returns>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.SetPreconditionMessage">
+            <summary>
+            Set precondition message
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.Logger.Dispose">
+            <summary>
+            Dispose log stack
+            </summary>
+        </member>
+        <member name="T:WebdriverFramework.Framework.WebDriver.ScreenShotRemoteWebDriver">
+            <summary>
+            class to set the settings screenshot
+            </summary>
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.ScreenShotRemoteWebDriver.#ctor(OpenQA.Selenium.Remote.ICommandExecutor,OpenQA.Selenium.ICapabilities)">
+            <summary> 
+            Gets a <see cref="T:OpenQA.Selenium.Screenshot"/> object representing the image of the page on the screen. 
+            </summary> 
+            <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns> 
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.ScreenShotRemoteWebDriver.#ctor(OpenQA.Selenium.ICapabilities)">
+            <summary> 
+            Gets a <see cref="T:OpenQA.Selenium.Screenshot"/> object representing the image of the page on the screen. 
+            </summary> 
+            <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns> 
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.ScreenShotRemoteWebDriver.#ctor(System.Uri,OpenQA.Selenium.ICapabilities)">
+            <summary> 
+            Gets a <see cref="T:OpenQA.Selenium.Screenshot"/> object representing the image of the page on the screen. 
+            </summary> 
+            <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns> 
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.ScreenShotRemoteWebDriver.#ctor(System.Uri,OpenQA.Selenium.ICapabilities,System.TimeSpan)">
+            <summary> 
+            Gets a <see cref="T:OpenQA.Selenium.Screenshot"/> object representing the image of the page on the screen. 
+            </summary> 
+            <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns> 
+        </member>
+        <member name="M:WebdriverFramework.Framework.WebDriver.ScreenShotRemoteWebDriver.GetScreenshot">
+            <summary>
+            get screenshot
+            </summary>
+            <returns>screenshot</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="TradeStops Ruleset" Description="TradeStops Ruleset" ToolsVersion="15.0">
+    <Rules AnalyzerId="AsyncUsageAnalyzers" RuleNamespace="AsyncUsageAnalyzers">
+        <Rule Id="UseConfigureAwait" Action="Warning" />
+    </Rules>
+    
+    <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+        <Rule Id="CA1028" Action="None" /> <!-- If possible, make the underlying type of enum System.Int32 instead of byte. -->
+        <Rule Id="CA1032" Action="None" /> <!-- Add the following constructor to BadRequestException: public BadRequestException(). -->
+        <Rule Id="CA1034" Action="None" /> <!-- Do not nest type. Alternatively, change its accessibility so that it is not externally visible. -->
+        <Rule Id="CA1052" Action="Warning" /> <!-- Type 'TriggerTypeGroups' is a static holder type but is neither static nor NotInheritable -->
+        <Rule Id="CA1054" Action="None" /> <!-- URI parameters should not be strings -->
+        <Rule Id="CA1056" Action="None" /> <!-- Change the type of property LoginUrl from string to System.Uri -->
+        <Rule Id="CA1062" Action="None" /> <!-- Validate arguments of public methods. ___ We we use custom validation in API and front-end validation for input. -->
+        <Rule Id="CA1303" Action="None" /> <!-- Do not pass literals as localized parameters. ___ We don't need this kind of localization currently. -->
+        <Rule Id="CA1304" Action="None" /> <!-- The behavior of 'string.ToUpper()' could vary based on the current user's locale settings. Replace this call with a call to 'string.ToUpper(CultureInfo)'. -->
+        <Rule Id="CA1305" Action="None" /> <!-- The behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings. Replace this call with a call to 'string.Format(IFormatProvider, string, params object[])'. -->
+        <Rule Id="CA1307" Action="None" /> <!-- The behavior of 'string.EndsWith(string)' could vary based on the current user's locale settings. Replace with a call to 'string.EndsWith(string, System.StringComparison)'. -->
+        <Rule Id="CA1707" Action="Warning" /> <!-- Underscores in member name acceptable in unit-tests, but suppression must be assembly-wide -->
+        <Rule Id="CA1714" Action="Warning" /> <!-- Flags enums should have plural names -->
+        <Rule Id="CA1716" Action="None" /> <!-- Rename type Error so that it no longer conflicts with the reserved language keyword 'Error'. -->
+        <Rule Id="CA1717" Action="None" /> <!-- Only FlagsAttribute enums should have plural names -->
+        <Rule Id="CA1720" Action="None" /> <!-- Identifier 'Decimal/Long/Short' contains type name -->
+        <Rule Id="CA1724" Action="Warning" /> <!-- The type name Trie conflicts in whole or in part with the namespace name 'TradeStops.Common.Trie'. Change either name to eliminate the conflict. -->
+        <Rule Id="CA1725" Action="Warning" /> <!-- Parameter names should match base declaration -->
+        <Rule Id="CA1805" Action="None" /> <!-- Member 'Xxx' is explicitly initialized to its default value - sometimes explicit initialization of value types can make code easier to understand, and rule doesn't really have any profit -->
+        <Rule Id="CA1810" Action="None" /> <!-- Initialize reference type static fields inline - this rule is quite good performance tip, but we don't have such 'heavy' initializations, and sometimes it's even better to initalize fields as soon as possible to find runtime issues earlier -->
+        <Rule Id="CA1819" Action="None" /> <!-- Properties should not return arrays -->
+        <Rule Id="CA1822" Action="None" /> <!-- Member Xxx does not access instance data and can be marked as static (Shared in VisualBasic) -->
+        <Rule Id="CA1834" Action="None" /> <!-- Use 'StringBuilder.Append(char)' instead of 'StringBuilder.Append(string)' when the input is a constant unit string. Rule is pretty easy to fix, but looks like unnecessary microoptimization. -->
+        <Rule Id="CA2000" Action="None" /> <!-- TODO: Dispose objects before losing scope. Rule seems to be reasonable, but not sure if we really need it. -->
+        <Rule Id="CA2007" Action="None" /> <!-- Do not directly await a Task without calling ConfigureAwait -->
+        <Rule Id="CA2008" Action="None" /> <!-- Do not create tasks without passing a TaskScheduler -->
+        <Rule Id="CA2227" Action="None" /> <!-- Change 'List' property to be read-only by removing the property setter. -->
+        <Rule Id="CA2237" Action="None" /> <!-- Add [Serializable] to Xxx as this type implements ISerializable. -->
+    </Rules>
+    
+    <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+        <Rule Id="SA1005" Action="None" /> <!-- Single line comment must begin with a space. -->
+        <Rule Id="SA1024" Action="Warning" /> <!-- Colon must be preceded by a space. -->
+        <Rule Id="SA1025" Action="None" /> <!-- Code must not contain multiple whitespace characters in a row. ___ Rule breaks any vertical code alignment -->
+        <Rule Id="SA1027" Action="Warning" /> <!-- Tabs must not be used. -->
+        <Rule Id="SA1028" Action="None" /> <!-- Code must not contain trailing whitespace ___ A bit weird rule, but may be useful for code-reviews, when people change lines just by adding some whitespaces in the end -->
+        <Rule Id="SA1100" Action="None" /> <!-- Do not prefix calls with base unless local implementation exists ___ Code seems to be more readable with 'base' prefix, this rule intended to be used together with 'this' rule. 'base' rule may be profitable if you have overriden virtual methods -->
+        <Rule Id="SA1101" Action="None" /> <!-- Prefix local calls with this ___ Agreed with the team that we just don't want to use this rule -->
+        <Rule Id="SA1108" Action="None" /> <!-- Block statements must not contain embedded comments ___ Annoing rule that doesn't allow write code like this: if (condition) // condition means this that \r\n { ... } -->
+        <Rule Id="SA1127" Action="Warning" /> <!-- Generic type constraints must be on their own line -->
+        <Rule Id="SA1133" Action="None" /> <!-- Each attribute should be placed in its own set of square brackets. ___ HTTP routing looks better when you locate 'HttpVerb' attribute on same line before 'Route' attribute -->
+        <Rule Id="SA1200" Action="None" /> <!-- Using directive must appear within a namespace declaration ___ Agreed with the team that we just don't want to use this rule -->
+        <Rule Id="SA1201" Action="Warning" /> <!-- A constructor should not follow a property -->
+        <Rule Id="SA1204" Action="None" /> <!-- Static members must appear before non-static members ___ If you make some private method static, you have to move it to other part of file, and these changes looks horrible in pull requests -->
+        <Rule Id="SA1309" Action="None" /> <!-- TODO: Field '_projectType' must not begin with an underscore -->
+        <Rule Id="SA1407" Action="None" /> <!-- Arithmetic expressions must declare precedence ___ Agreed with the team that everyone knows expressions priority, and lots of braces makes code less readable -->
+        <Rule Id="SA1408" Action="None" /> <!-- Conditional expressions must declare precedence ___ Agreed with the team that everyone knows expressions priority, and lots of braces makes code less readable -->
+        <Rule Id="SA1502" Action="None" /> <!-- Element must not be on a single line ___ This rule sometimes leads to weird syntax, consider to enable and check it again -->
+        <Rule Id="SA1503" Action="Warning" /> <!-- Braces must not be omitted -->
+        <Rule Id="SA1512" Action="None" /> <!-- Single-line comments must not be followed by blank line -->
+        <Rule Id="SA1516" Action="None" /> <!-- Elements must be separated by blank line ___ With this rule you cannot group elements by their meaning, and empty lines in DTO classes are redundant and just waste of screen space -->
+        <Rule Id="SA1517" Action="Warning" /> <!-- Code must not contain blank lines at start of file -->
+        <Rule Id="SA1600" Action="Warning" /> <!-- TODO: Code must be documented -->
+        <Rule Id="SA1623" Action="None" /> <!-- If the property exposes both a get and set accessor, the summary text should begin with "Gets or sets" -->
+        <Rule Id="SA1633" Action="None" /> <!-- The file header XML is invalid. -->
+        <Rule Id="SA1642" Action="None" /> <!-- Constructor summary documentation must begin with standard text -->
+        <Rule Id="SA1652" Action="None" /> <!-- Enable XML documentation output -->
+    </Rules>
+</RuleSet>

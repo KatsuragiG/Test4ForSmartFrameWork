@@ -1,0 +1,8 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:nbrb="http://www.nbrb.by/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <nbrb:CurrenciesRef>
+      <nbrb:Periodicity>1</nbrb:Periodicity>
+    </nbrb:CurrenciesRef>
+  </soapenv:Body>
+</soapenv:Envelope>

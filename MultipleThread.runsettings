@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<!-- Configurations that affect the Test Framework -->
+	<RunConfiguration>
+		<MaxCpuCount>0</MaxCpuCount>
+		<!-- Path relative to directory that contains .runsettings file-->
+		<ResultsDirectory>.\TestResults</ResultsDirectory>
+
+		<!-- x86 or x64 -->
+		<!-- You can also change it from the Test menu; choose "Processor Architecture for AnyCPU Projects" -->
+		<TargetPlatform>x86</TargetPlatform>
+
+		<!-- TestSessionTimeout was introduced in Visual Studio 2017 version 15.5 -->
+		<!-- Specify timeout in milliseconds. A valid value should be greater than 0 -->
+		<TestSessionTimeout>37800000</TestSessionTimeout>
+	</RunConfiguration>
+
+	<!-- Adapter Specific sections -->
+
+	<!-- MSTest adapter -->
+	<MSTest>
+		<DeploymentEnabled>True</DeploymentEnabled>
+		<MapInconclusiveToFailed>True</MapInconclusiveToFailed>
+		<CaptureTraceOutput>False</CaptureTraceOutput>
+		<DeleteDeploymentDirectoryAfterTestRunIsComplete>False</DeleteDeploymentDirectoryAfterTestRunIsComplete>
+		<Parallelize>
+			<Workers>10</Workers>
+			<Scope>ClassLevel</Scope>
+		</Parallelize>
+	</MSTest>
+
+	<!-- Configuration for loggers -->
+	<LoggerRunSettings>
+		<Loggers>
+			<Logger friendlyName="trx" enabled="True">
+				<Configuration>
+					<LogFileName>qa-auto-testresult.trx</LogFileName>
+				</Configuration>
+			</Logger>
+		</Loggers>
+	</LoggerRunSettings>
+
+</RunSettings>
