@@ -5,7 +5,7 @@ using System;
 using WebdriverFramework.Framework.WebDriver.Elements;
 using System.Collections.ObjectModel;
 
-namespace TestEnviroment.Dropdown
+namespace TestEnviroment.DropDown
 {
     public class DropDown : BaseElement
     {
@@ -29,13 +29,5 @@ namespace TestEnviroment.Dropdown
             dropDownItem.WaitForElementIsPresent();
             dropDownItem.ClickAndWaitForLoading();
         }
-
-        //public List<string> GetDropDownLabelNames()
-        //{
-        //    var cbLabelList = (ReadOnlyCollection<IWebElement>)FindElements(resultsPrices);
-        //    var cbLabelNames = cbLabelList.Select(t => t.Text.Trim()).ToList();
-
-        //    return cbLabelNames.Where(x => x != string.Empty).ToList();
-        //}                     
     }
 }

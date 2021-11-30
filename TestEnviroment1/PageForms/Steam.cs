@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using WebdriverFramework.Framework.WebDriver;
 using WebdriverFramework.Framework.WebDriver.Elements;

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using WebdriverFramework.Framework.Util;
+﻿using WebdriverFramework.Framework.Util;
 using WebdriverFramework.Framework.WebDriver;
 
-namespace PageForms.BrowserStart
+namespace TestEnviroment.BrowserStart
 {
     public class BrowserStart
     {

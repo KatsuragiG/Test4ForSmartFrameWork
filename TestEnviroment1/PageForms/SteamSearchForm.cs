@@ -1,12 +1,13 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using PageForms.SteamForm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using TestEnviroment.Dropdown;
+using TestEnviroment.DropDown;
 
-namespace PageForms.SteamForm
+namespace PageForms.SteamSeachForm
 {
     public class SteamSearchForm : Steam
     {
@@ -14,11 +15,9 @@ namespace PageForms.SteamForm
 
         private const string sortBybox = "//div[contains(@class, 'sortbox')]";
         private const string searchResultsGrid = "//div[contains(@id, '_resultsRows')]";
-        private readonly DropDown sortField = new DropDown(By.XPath($"{sortBybox}//div[contains(@class, 'dselect_container')]"), "Dropdown");
+        private readonly DropDown sortField = new DropDown(By.XPath($"{sortBybox}//div[contains(@class, 'dselect_container')]"), "Drop-down");
         private readonly By gridResults = By.XPath("//div[contains(@id, '_resultsRows')]");
-        private readonly By resultsPrices = By.XPath("//div[contains(@id, '_resultsRows')]//div[contains(@class, 'price')]//div[contains(@class, 'price')]");
-        //private readonly By sortDropDown = By.XPath($"{sortField}//div[@class = 'dropcontainer']//ul//li");
-
+        private readonly By resultsPrices = By.XPath("//div[contains(@id, '_resultsRows')]//div[contains(@class, 'price')]//div[contains(@class, 'price')]"); 
 
         public SteamSearchForm() : base(titleLocator, "Steam Main Menu Form")
         {
