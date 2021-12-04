@@ -21,5 +21,10 @@ namespace TestEnviroment.BrowserStart
             Browser.Instance.NavigateToStartPage();
             Browser.Instance.WindowMaximise();
         }
+
+        public void NavigateToMainPage()
+        {            
+            Browser.Instance.NavigateToStartPage();            
+        }
     }
 }

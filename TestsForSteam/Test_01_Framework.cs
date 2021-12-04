@@ -10,7 +10,7 @@ using PageForms.SteamSeachForm;
 
 namespace TestsForSteam
 {
-    public class Tests : BaseTest
+    public class Test_01_Framework : BaseTest
     {             
         private const int quantityOfGamesForWither = 10;
         private const int quantityOfGamesForFallout = 20;
@@ -97,8 +97,7 @@ namespace TestsForSteam
                     {
                         values = "0";
                     }
-                    newPrice.Add(values);
-                    
+                    newPrice.Add(values);                    
                 }
                 else
                 {
@@ -112,9 +111,7 @@ namespace TestsForSteam
         {
             for (int i = 0; i < quantityOfGames - 1; i++)
             {
-                Assert.IsTrue(list[i] <= list[i + 1], "Values is not order by asc");
-                //object orderValue = (list[i] <= list[i + 1]);
-                //Checker.IsTrue(orderValue, "Values is not order by asc");
+                Assert.IsTrue(list[i] <= list[i + 1], "Values is not order by asc");                
             }
         }
 
