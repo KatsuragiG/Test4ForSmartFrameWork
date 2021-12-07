@@ -22,6 +22,7 @@ namespace TestEnviroment.BrowserStart
             Browser.Instance.WindowMaximise();
         }
 
+        //This Method is used for Cars Models task
         public void NavigateToMainPage()
         {            
             Browser.Instance.NavigateToStartPage();            
