@@ -2,7 +2,7 @@
 
 namespace PageForms.Enums.TrimParametrs
 {
-    public enum TrimParametrsEnums
+    public enum TrimParametersEnums
     {
         [EnumExtensions.StringMapping("Style")]        
         Style = 1,

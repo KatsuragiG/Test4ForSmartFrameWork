@@ -22,9 +22,9 @@ namespace PageForms.ModelCars.CompareCarsForm
 
         private readonly PopUp PopUpLocator = new PopUp(By.XPath("//div[contains(@class, 'sds-modal-visible')]"), "PopUp");
         private readonly Label PopUpLabelToClick = new Label(By.XPath("//div[@class = 'sds-modal__content-body sds-modal__content-body']//h2"), "LabelToClick");
-        private readonly Link DescriptionOfCar = new Link(By.XPath("(//div[contains(@class, '-url')]//a)[{0}]"), "Description link");        
-        private readonly Button AddCarPopUp = new Button(By.XPath("//button[@type = 'submit']"), "Add car to comparison");
-        private readonly Button SeeTheComparison = new Button(By.XPath("//button[@phx-click = 'details']"), "See the comparison button");
+        private readonly Link DescriptionLinkForCar = new Link(By.XPath("(//div[contains(@class, '-url')]//a)[{0}]"), "Description link");        
+        private readonly Button AddCarPopUpButton = new Button(By.XPath("//button[@type = 'submit']"), "Add car to comparison");
+        private readonly Button SeeTheComparisonButton = new Button(By.XPath("//button[@phx-click = 'details']"), "See the comparison button");
 
         public CompareCarsForm() : base(titleLocator, "Trims Page Form")
         {
@@ -34,25 +34,32 @@ namespace PageForms.ModelCars.CompareCarsForm
         {
         }       
 
-        public IDictionary<string, string> NumberCardsForCar = new Dictionary<string, string>
+        public IDictionary<string, int> NumberCardsForCar = new Dictionary<string, int>
             {
-                { "card1", "1" },
-                { "card2", "2" }
+                { "card1", 1 },
+                { "card2", 2 }
             };
 
-        public void ClickOnAddCardLink(string numberOfCard)
+        public void ClickOnAddCardLink(int numberOfCard)
         {            
             var cardNumber = string.Format(AddCarLink, numberOfCard);
             var AddCardLink = new Link(By.XPath(cardNumber), "Add card link");
             AddCardLink.ScrollIntoViewWithCenterAligning();
             AddCardLink.WaitForElementIsPresent();
-            AddCardLink.ClickAndWaitForLoading();
+            try
+            {
+                AddCardLink.ClickAndWaitForLoading();
+            }
+            catch (ElementClickInterceptedException)
+            {
+                AddCardLink.DoubleClick();                
+            }            
         }
 
         public void ClickOnAddCarButtonModal()
         {
-            AddCarPopUp.WaitForIsEnabled();
-            AddCarPopUp.Click();        
+            AddCarPopUpButton.WaitForIsEnabled();
+            AddCarPopUpButton.Click();        
         }
 
         public bool IsPopUpPresent()
@@ -69,12 +76,12 @@ namespace PageForms.ModelCars.CompareCarsForm
 
         public void ClickOnSeeComparisonButton()
         {
-            SeeTheComparison.ClickAndWaitForLoading();        
+            SeeTheComparisonButton.ClickAndWaitForLoading();        
         }
 
         public string GetDescriptionForCar(int value)
         {
-            return DescriptionOfCar.GetText();
+            return DescriptionLinkForCar.GetText();
         }
 
         public string GetStyleDescriptionForCar(int value)
@@ -82,7 +89,7 @@ namespace PageForms.ModelCars.CompareCarsForm
             return new Label(By.XPath(string.Format(StyleForCar, value)), "Style Description").GetText();        
         }
 
-        public string GetComparerParametrsForCar(TrimParametrsEnums column, int value)
+        public string GetComparerParametersForCar(TrimParametersEnums column, int value)
         {
             return FindElements(By.XPath(string.Format(TableItems, column.GetStringMapping(), value))).Last().Text;
         }

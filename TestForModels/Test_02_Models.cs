@@ -7,8 +7,7 @@ using PageForms.ModelCars.Models.CarsDropDownModel;
 using PageForms.ModelCars.Models.CarsParametrsModel;
 using PageForms.ModelCars.NavigationMenu;
 using PageForms.ModelCars.ResearchForm;
-using System;
-using System.Collections.Generic;
+using PageForms.ModelCars.TrimComparePages;
 using System.Linq;
 using TestEnviroment.BrowserStart;
 using WebdriverFramework.Framework.WebDriver;
@@ -18,19 +17,20 @@ namespace TestForModels
     [TestClass]
     public class Test_02_Models : BaseTest
     {
-        private CarsDropDownModel ValuesDropDownForFirstCar;
-        private CarsDropDownModel ValuesDropDownForSecondCar;
-        private CarsParametrsModel ParametrsForFirstCar;
-        private CarsParametrsModel ParametrsForSecondCar;
-        private CarsParametrsModel ComparerParametrsForFirstCar;
-        private CarsParametrsModel ComparerParametrsForSecondCar;
+        private CarsDropDownModel valuesDropDownForFirstCar;
+        private CarsDropDownModel valuesDropDownForSecondCar;
+        private CarsParametersModel parametersForFirstCar;
+        private CarsParametersModel parametersForSecondCar;
+        private CarsParametersModel comparedParametersForFirstCar;
+        private CarsParametersModel comparedParametersForSecondCar;
 
-        private const int OuantityOfRepitCycle = 10;
-        private int steps;
-        private readonly string AllYearsValue = "All years";
+        private const int OuantityOfRepeatCycle = 10;
+        private readonly string allYearsValue = "All years";
+        private readonly string notAvailable = "not available";
+        private int steps;        
+        private int quantityOfRetry;
+        private int cardCount = 1;
         private bool isTrimShown;
-        private int QuantityOfRetry = 0;
-        private int CardCount = 1;
 
         [TestInitialize]
         public void TestInitialize()
@@ -41,23 +41,23 @@ namespace TestForModels
         [TestMethod]
         public override void RunTest()
         {
-            LogStep(steps++, "Check that main page open and go to Research page");
+            LogStep(steps++, "Check that main page is opened");
             var carsForm = new CarsForm();
             carsForm.AssertIsOpen();
 
             LogStep(steps++, "Go to Research page and do steps for check that trim parameters is shown for car");
-            ValuesDropDownForFirstCar = StepsToTrim();
+            valuesDropDownForFirstCar = StepsToTrim();
 
             LogStep(steps++, "Catch the parameters for base first trim: Available Engines, Transmissions");
-            ParametrsForFirstCar = CatchParametersForCarModel();
+            parametersForFirstCar = CatchParametersForCarModel();
             carsForm.NavigateToMainPage();
 
             LogStep(steps++, "Catch the parameters for second car");            
-            ValuesDropDownForSecondCar = StepsToTrim();
-            ParametrsForSecondCar = CatchParametersForCarModel();
+            valuesDropDownForSecondCar = StepsToTrim();
+            parametersForSecondCar = CatchParametersForCarModel();
 
             LogStep(steps++, "Navigate to research page and click Side-bySide Comparisons");
-            carsForm.NavigateToReserchPage();
+            carsForm.NavigateToResearchPage();
             var researchForm = new ResearchForm();
             researchForm.AssertIsOpen();
             Assert.IsTrue(researchForm.IsCompareModelLinkPresent(), "CompareModel Link is not present");
@@ -66,46 +66,40 @@ namespace TestForModels
             LogStep(steps++, "Select for comparer cars that were selected in previews steps");
             var compareForm = new CompareCarsForm();
             compareForm.AssertIsOpen();
-            SelecteValueInDropDownForComparison(ValuesDropDownForFirstCar, ParametrsForFirstCar);
-            SelecteValueInDropDownForComparison(ValuesDropDownForSecondCar, ParametrsForSecondCar);
+            SelectValueInDropDownForComparison(valuesDropDownForFirstCar, parametersForFirstCar);
+            SelectValueInDropDownForComparison(valuesDropDownForSecondCar, parametersForSecondCar);
             compareForm.ClickOnSeeComparisonButton();
 
             LogStep(steps++, "Catch the parameters and check that it equals for cars");
-            CardCount = 1;
-            ComparerParametrsForFirstCar = CatchParametrsForCompare();
-            ComparerParametrsForSecondCar = CatchParametrsForCompare();
-            CheckThatModelsAreEquals(ParametrsForFirstCar, ComparerParametrsForFirstCar);
-            CheckThatModelsAreEquals(ParametrsForSecondCar, ComparerParametrsForSecondCar);
-        }
+            cardCount = 1;
+            comparedParametersForFirstCar = CatchParametersForCompare();
+            comparedParametersForSecondCar = CatchParametersForCompare();
+            Checker.IsTrue(parametersForFirstCar.Equals(comparedParametersForFirstCar), "Parameters for first car are equals");
+            Checker.IsTrue(parametersForSecondCar.Equals(comparedParametersForSecondCar), "Parameters for second car are not equals");                      
+        }       
 
-        private void CheckThatModelsAreEquals(CarsParametrsModel model, CarsParametrsModel model2)
-        {
-            Checker.CheckEquals(model.Style, model2.Style, $"{model.Style}are not equal {model2.Style} in first car");
-            Checker.CheckEquals(model.Engine, model2.Engine, $"{model.Engine}are not equal {model2.Engine} in first car");
-            Checker.CheckEquals(model.Transmission, model2.Transmission, $"{model.Transmission}are not equal {model2.Transmission} in first car");
-        }
-
-        private CarsParametrsModel CatchParametrsForCompare()
+        private CarsParametersModel CatchParametersForCompare()
         {
             var compareForm = new CompareCarsForm();
-            var carsModel = new CarsParametrsModel
+            var carsModel = new CarsParametersModel
             {
-                Style = compareForm.GetStyleDescriptionForCar(CardCount),
-                Engine = compareForm.GetComparerParametrsForCar(TrimParametrsEnums.Engine, CardCount).Contains("is not available")
-                ? "-"
-                : compareForm.GetComparerParametrsForCar(TrimParametrsEnums.Engine, CardCount),
-                Transmission = compareForm.GetComparerParametrsForCar(TrimParametrsEnums.Transmission, CardCount).Split('\r').First().Contains("is not available")
-                ? "-"
-                : compareForm.GetComparerParametrsForCar(TrimParametrsEnums.Transmission, CardCount).Split('\r').First()
+                Style = compareForm.GetStyleDescriptionForCar(cardCount),
+                Engine = string.IsNullOrWhiteSpace(compareForm.GetComparerParametersForCar(TrimParametersEnums.Engine, cardCount))                
+                    ? "-"
+                    : compareForm.GetComparerParametersForCar(TrimParametersEnums.Engine, cardCount).Split('\r').First().Replace(" (", "("),
+                Transmission = string.IsNullOrWhiteSpace(compareForm.GetComparerParametersForCar(TrimParametersEnums.Transmission, cardCount))
+                    ? "-"
+                    : compareForm.GetComparerParametersForCar(TrimParametersEnums.Transmission, cardCount).Split('\r').First()
             };
-            CardCount++;
+            cardCount++;
+
             return carsModel;
         }
 
-        private void SelecteValueInDropDownForComparison(CarsDropDownModel dropdown, CarsParametrsModel style)
+        private void SelectValueInDropDownForComparison(CarsDropDownModel dropdown, CarsParametersModel style)
         {            
             var compareForm = new CompareCarsForm();
-            compareForm.ClickOnAddCardLink(compareForm.NumberCardsForCar[$"card{CardCount++}"]);
+            compareForm.ClickOnAddCardLink(compareForm.NumberCardsForCar[$"card{cardCount++}"]);
             Checker.IsTrue(compareForm.IsPopUpPresent(), "PopUp is not present");
             compareForm.SelectValueInModalDropDown(dropdown.Make, DropDownResearchEnums.Make);
             compareForm.SelectValueInModalDropDown(dropdown.Model, DropDownResearchEnums.Model);
@@ -114,16 +108,21 @@ namespace TestForModels
             compareForm.ClickOnAddCarButtonModal();
         }
 
-        private CarsParametrsModel CatchParametersForCarModel()
+        private CarsParametersModel CatchParametersForCarModel()
         {
             var trimPageForm = new TrimComparePage();
             Assert.IsTrue(trimPageForm.GetTrimColumnsForCar().Any(), "Columns with parameters for car is not shown");
-            var parametrsForCar = new CarsParametrsModel
+            var parametrsForCar = new CarsParametersModel
             {
-                Style = trimPageForm.GetTrimParametrsForCar(TrimParametrsEnums.Style),
-                Engine = trimPageForm.GetTrimParametrsForCar(TrimParametrsEnums.Engine),
-                Transmission = trimPageForm.GetTrimParametrsForCar(TrimParametrsEnums.Transmission)
+                Style = trimPageForm.GetTrimParametrsForCar(TrimParametersEnums.Style),
+                Engine = trimPageForm.GetTrimParametrsForCar(TrimParametersEnums.Engine).Contains(notAvailable)
+                    ? "-"
+                    : trimPageForm.GetTrimParametrsForCar(TrimParametersEnums.Engine).Replace(" (", "("),
+                Transmission = trimPageForm.GetTrimParametrsForCar(TrimParametersEnums.Transmission).Contains(notAvailable)
+                    ? "-"
+                    : trimPageForm.GetTrimParametrsForCar(TrimParametersEnums.Transmission)
             };
+
             return parametrsForCar;
         }
 
@@ -131,7 +130,7 @@ namespace TestForModels
         {
             var dropDownModel = new CarsDropDownModel();
             var navigationMenu = new NavigationMenuForm();
-            navigationMenu.NavigateToReserchPage();
+            navigationMenu.NavigateToResearchPage();
             do
             {
                 LogStep(steps++, "Select random value for car and search the auto");
@@ -145,7 +144,7 @@ namespace TestForModels
                         Model = reserchForm.SelectRandomValueInDropDown(DropDownResearchEnums.Model),
                         Year = reserchForm.SelectRandomValueInDropDown(DropDownResearchEnums.Year)
                     };
-                    if (dropDownModel.Year != AllYearsValue)
+                    if (dropDownModel.Year != allYearsValue)
                     {
                         listDropDownCount = true;
                     }
@@ -162,20 +161,21 @@ namespace TestForModels
 
                 LogStep(steps++, "Check that page with parameters for auto is shown");
                 var trimPageForm = new TrimComparePage();
-                isTrimShown = trimPageForm.IsTrimParametrsIsShown();
+                isTrimShown = trimPageForm.IsTrimParametersIsShown();
                 if (isTrimShown == false)
                 {
-                    trimPageForm.NavigateToReserchPage();
+                    trimPageForm.NavigateToResearchPage();
                 }
                 else
                 {
-                    QuantityOfRetry = 0;
-                    Checker.IsTrue(trimPageForm.IsTrimParametrsIsShown(), "Trim with parameters for car is not shown");
+                    quantityOfRetry = 0;
+                    Checker.IsTrue(trimPageForm.IsTrimParametersIsShown(), "Trim with parameters for car is not shown");
                     trimPageForm.ClickOnBaseSectionForCar();
                 }
-                QuantityOfRetry++;
+                quantityOfRetry++;
             }
-            while (OuantityOfRepitCycle > QuantityOfRetry && isTrimShown == false);
+            while (OuantityOfRepeatCycle > quantityOfRetry && isTrimShown == false);
+
             return dropDownModel;
         }
     }

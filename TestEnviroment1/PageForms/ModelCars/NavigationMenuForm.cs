@@ -32,7 +32,7 @@ namespace PageForms.ModelCars.NavigationMenu
             LogoForMainMenu.ClickAndWaitForLoading();
         }
 
-        public void NavigateToReserchPage()
+        public void NavigateToResearchPage()
         {
            new Link(By.XPath(string.Format(NavigationPagesLocator, NavigationEnums.ResearchReviews.GetStringMapping())), "Research page").Click();           
         }                

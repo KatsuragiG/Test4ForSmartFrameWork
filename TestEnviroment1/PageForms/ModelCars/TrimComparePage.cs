@@ -6,18 +6,18 @@ using System.Linq;
 using WebdriverFramework.Framework.Util;
 using WebdriverFramework.Framework.WebDriver.Elements;
 
-namespace PageForms.ModelCars.ResearchForm
+namespace PageForms.ModelCars.TrimComparePages
 {
     public class TrimComparePage : NavigationMenuForm
     {
         private static readonly By titleLocator = By.CssSelector("div[class *= 'research_trim_page']");
 
-        private const string TrimsParametrs = "//section[contains(@class, 'trim-accordion-container')]//div[contains(@class, 'sds-accordion')]";
+        private const string TrimsParameters = "//section[contains(@class, 'trim-accordion-container')]//div[contains(@class, 'sds-accordion')]";
         private const string TrimPanelFirst = "(//div[contains(@id, '-panel1')])[1]";
         private const string TrimColumnsForCar = TrimPanelFirst + "//tr[@class = 'heading-row']";
-        private const string TrimParametrsForModel = TrimColumnsForCar + "//th[contains(text(), '{0}')]/following::tr[@class = 'content-row'][1]//td[1]";
+        private const string TrimParametersForModel = TrimColumnsForCar + "//th[contains(text(), '{0}')]/following::tr[@class = 'content-row'][1]//td[1]";
                 
-        private readonly Button BaseParametrsForCar = new Button(By.XPath("(//button[contains(@class, '-accordion-trigger')])[1]"), "button for cars");
+        private readonly Button BaseParametersButton = new Button(By.XPath("(//button[contains(@class, '-accordion-trigger')])[1]"), "button for cars");
         public TrimComparePage() : base(titleLocator, "Trims Page Form")
         {
         }
@@ -26,14 +26,14 @@ namespace PageForms.ModelCars.ResearchForm
         {
         }
 
-        public bool IsTrimParametrsIsShown()
+        public bool IsTrimParametersIsShown()
         {
-            return FindElements(By.XPath(TrimsParametrs)).Any(l => l.Displayed);
+            return FindElements(By.XPath(TrimsParameters)).Any(l => l.Displayed);
         }
 
         public void ClickOnBaseSectionForCar()
         {
-            BaseParametrsForCar.ClickAndWaitForLoading();
+            BaseParametersButton.ClickAndWaitForLoading();
         }
 
         public List<string> GetTrimColumnsForCar()
@@ -41,9 +41,9 @@ namespace PageForms.ModelCars.ResearchForm
             return FindElements(By.XPath(TrimColumnsForCar)).Select(l => l.Text).ToList();
         }
 
-        public string GetTrimParametrsForCar(TrimParametrsEnums column)
+        public string GetTrimParametrsForCar(TrimParametersEnums column)
         {            
-            return FindElements(By.XPath(string.Format(TrimParametrsForModel, column.GetStringMapping()))).Last().Text;
+            return FindElements(By.XPath(string.Format(TrimParametersForModel, column.GetStringMapping()))).Last().Text;
         }
     }
 }
